@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 export default function Projects() {
   const projects = [
     {
@@ -20,23 +22,30 @@ export default function Projects() {
       desc: "Mobile-based clinic application (Flutter).",
       link: "https://github.com/nvnrchmn/klinik_app"
     },
-  ]
+  ];
+
   return (
-    <section className="mb-8">
+    <section className="mb-12">
       <h2 className="text-xl font-semibold mb-4">Projects</h2>
       <div className="grid gap-4">
         {projects.map((project, i) => (
-          <a
+          <motion.a
             key={i}
-            href={project.link}w
+            href={project.link}
             target="_blank"
-            className="project-card block p-4 border border-gray-200 rounded-lg bg-white"
+            rel="noopener noreferrer"
+            className="block p-4 border border-gray-200 rounded-lg bg-white transition"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            whileHover={{ scale: 1.1, y: -4 }}
+            viewport={{ once: false }}
+            transition={{ duration: 0.01, delay: i * 0.01 }}
           >
             <h3 className="text-lg font-bold text-blue-600">{project.name}</h3>
-            <p className="text-sm text-gray-600">{project.desc}</p>
-          </a>
+            <p className="text-sm text-gray-600 mt-1">{project.desc}</p>
+          </motion.a>
         ))}
       </div>
     </section>
-  )
+  );
 }
