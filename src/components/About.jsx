@@ -16,12 +16,9 @@ export default function About() {
         animate={fadeInUp.animate}
         transition={fadeInUp.transition}
       >
-        Tech-savvy and solution-oriented individual with a background in IT infrastructure,
-        inventory systems, and hands-on experience in technical environments. Strong foundation
-        in computer networking, web development basics, and troubleshooting hardware/software
-        issues. Currently expanding expertise in web technologies and system development with a
-        commitment to continuous learning and team collaboration. Adept at translating technical
-        knowledge into actionable support and development efforts in dynamic IT environments.
+        IT professional with a strong foundation in infrastructure, inventory systems, and hands-on technical support. 
+        Skilled in networking, basic web development, and hardware/software troubleshooting. 
+        Currently expanding expertise in modern web technologies, with a focus on adaptability, continuous learning, and collaborative work.
       </motion.p>
     </section>
   )
