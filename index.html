@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Nova Nurachman — Portfolio & Resume</title>
+    <meta name="description"
+        content="Portfolio & resume Nova Nurachman: web developer, IT support, dan inventory management. Lihat proyek E‑Voting, E‑Invoice RSA, RW Connect, Electric Bill, Service App, dan Mini Journaling." />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="https://nvnrchmn.github.io/nova-resume/" />
+    <meta name="theme-color" content="#0ea5e9" />
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:title" content="Nova Nurachman — Portfolio & Resume" />
+    <meta property="og:description" content="Web developer & IT support. Jelajahi proyek dan unduh CV." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://nvnrchmn.github.io/nova-resume/og-cover.png" />
+    <meta property="og:url" content="https://nvnrchmn.github.io/nova-resume/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Nova Nurachman — Portfolio & Resume" />
+    <meta name="twitter:description" content="Web developer & IT support. Jelajahi proyek dan unduh CV." />
+    <meta name="twitter:image" content="https://nvnrchmn.github.io/nova-resume/og-cover.png" />
+
+    <!-- JSON-LD Person + WebSite -->
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Nova Nurachman",
+    "url": "https://nvnrchmn.github.io/nova-resume/",
+    "sameAs": [
+      "https://www.linkedin.com/in/nvnrchmn/",
+      "https://github.com/nvnrchmn"
+    ],
+    "jobTitle": "Web Developer & IT Support",
+    "knowsAbout": ["Laravel","Livewire","MySQL","TailwindCSS","TOGAF","Inventory Management"]
+  }
+  </script>
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "url": "https://nvnrchmn.github.io/nova-resume/",
+    "name": "Nova Portfolio",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://www.google.com/search?q=site:nvnrchmn.github.io+nova-resume+{search_term}",
+      "query-input": "required name=search_term"
+    }
+  }
+  </script>
+
+    <!-- Tailwind (CDN) with dark mode class strategy -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class', // IMPORTANT: enables class-based dark mode
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe', 300: '#93c5fd', 400: '#60a5fa',
+                            500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 800: '#1e40af', 900: '#1e3a8a'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .link-underline {
+            background-size: 0 2px;
+            background-position: 0 100%;
+            background-repeat: no-repeat;
+            transition: background-size .2s ease
+        }
+
+        .link-underline:hover {
+            background-image: linear-gradient(currentColor, currentColor);
+            background-size: 100% 2px
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity .5s ease, transform .5s ease
+        }
+
+        .fade-up.revealed {
+            opacity: 1;
+            transform: translateY(0)
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .fade-up {
+                transition: none
+            }
+        }
+
+        .focus-ring:focus {
+            outline: 3px solid rgb(56 189 248);
+            outline-offset: 2px
+        }
+    </style>
+
+    <!-- Dark mode boot: set as early as possible to avoid flash -->
+    <script>
+            (function () {
+                try {
+                    const saved = localStorage.getItem('theme');
+                    const preferDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    if (saved === 'dark' || (!saved && preferDark)) document.documentElement.classList.add('dark');
+                } catch (e) { }
+            })();
+    </script>
+</head>
+
+<body class="bg-white text-slate-800 dark:bg-slate-900 dark:text-slate-100 antialiased">
+    <a href="#main"
+        class="sr-only focus:not-sr-only focus-ring fixed left-3 top-3 z-50 bg-white/90 dark:bg-slate-800/90 px-3 py-1 rounded">Lewati
+        ke konten</a>
+
+    <!-- Header -->
+    <header
+        class="sticky top-0 z-30 border-b border-slate-200/70 dark:border-slate-700/60 backdrop-blur bg-white/70 dark:bg-slate-900/70">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+            <a href="#home" class="font-semibold tracking-tight">Nova Nurachman<span class="text-brand-500">.</span></a>
+            <nav class="hidden md:flex gap-6 text-sm" aria-label="Navigasi utama">
+                <a href="#about" class="hover:text-brand-500 link-underline">Tentang</a>
+                <a href="#skills" class="hover:text-brand-500 link-underline">Keahlian</a>
+                <a href="#projects" class="hover:text-brand-500 link-underline">Proyek</a>
+                <a href="#contact" class="hover:text-brand-500 link-underline">Kontak</a>
+            </nav>
+            <div class="flex items-center gap-2">
+                <a href="./Nova Nurachman - CV ATS.pdf"
+                    class="hidden sm:inline-flex px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 hover:border-brand-500 text-sm"
+                    target="_blank" rel="noopener">Unduh CV</a>
+                <button id="themeToggle" class="p-2 rounded-lg border border-slate-300 dark:border-slate-700 focus-ring"
+                    aria-label="Toggle tema" aria-pressed="false">
+                    <svg id="iconSun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                        class="w-5 h-5 hidden">
+                        <path
+                            d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.8 1.42-1.42zm10.45 14.32l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM1 13h3v-2H1v2zm19 0h3v-2h-3v2zM4.95 19.07l1.41 1.41 1.8-1.79-1.42-1.42-1.79 1.8zM17.66 4.84l1.42 1.42 1.79-1.8-1.41-1.41-1.8 1.79zM12 4a1 1 0 011-1h0a1 1 0 00-1-1 1 1 0 00-1 1h0a1 1 0 011 1zm0 16a1 1 0 011 1h0a1 1 0 00-1 1 1 1 0 00-1-1h0a1 1 0 011-1zm0-14a7 7 0 100 14 7 7 0 000-14z" />
+                    </svg>
+                    <svg id="iconMoon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                        class="w-5 h-5">
+                        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section id="home" class="relative overflow-hidden">
+        <div class="max-w-6xl mx-auto px-4 py-20 md:py-28 grid md:grid-cols-2 gap-10 items-center">
+            <div class="fade-up">
+                <div
+                    class="inline-flex items-center text-xs px-2 py-1 rounded-full border border-slate-300/70 dark:border-slate-700/70 mb-4">
+                    Tersedia untuk peluang kerja</div>
+                <h1 class="text-3xl md:text-5xl font-extrabold leading-tight tracking-tight">
+                    Nova Nurachman
+                    <span class="block text-brand-600 dark:text-brand-400">Web Developer & IT Support</span>
+                </h1>
+                <p class="mt-4 text-slate-600 dark:text-slate-300 max-w-prose">Membangun aplikasi Laravel yang aman dan
+                    bersih. Berpengalaman pada manajemen gudang & aset, integrasi digital signature, e‑voting, dan
+                    dashboard operasional.</p>
+                <div class="mt-6 flex flex-wrap gap-3">
+                    <a href="#projects" class="px-4 py-2 rounded-lg bg-brand-600 hover:bg-brand-700 text-white">Lihat
+                        Proyek</a>
+                    <a href="mailto:nv.nrchmn@gmail.com"
+                        class="px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700">Kontak Saya</a>
+                    <a href="https://www.linkedin.com/in/nvnrchmn/" target="_blank" rel="noopener"
+                        class="px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700">LinkedIn</a>
+                </div>
+            </div>
+            <div class="relative fade-up">
+                <div
+                    class="aspect-square rounded-2xl bg-gradient-to-br from-brand-200/60 to-brand-400/50 dark:from-brand-400/20 dark:to-brand-700/20 ring-1 ring-inset ring-slate-200/60 dark:ring-slate-700/60 p-1">
+                    <div
+                        class="h-full w-full rounded-2xl bg-white dark:bg-slate-800 grid place-items-center text-center p-8">
+                        <div class="flex flex-col items-center">
+                            <img src="img/profile.jpeg" class="w-80 h-80 rounded-full" alt="" srcset="">
+                            <p class="text-sm uppercase tracking-widest text-slate-500 dark:text-slate-400 mt-4">Tech
+                                Stack
+                            </p>
+                            <p class="mt-3 text-xl font-semibold">Laravel • Livewire • MySQL • Tailwind • Alpine •
+                                Filament</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="py-16 md:py-20 border-t border-slate-200/70 dark:border-slate-700/60">
+        <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-3 gap-10">
+            <div class="fade-up">
+                <h2 class="text-2xl font-bold">Tentang Saya</h2>
+            </div>
+            <div class="md:col-span-2 space-y-4 text-slate-700 dark:text-slate-300 fade-up">
+                <p>Profesional multitalenta dengan pengalaman di <strong>administrasi gudang & aset</strong>, layanan
+                    pelanggan, dan <strong>dukungan teknis IT</strong>. Fokus utama saat ini adalah pengembangan
+                    aplikasi web berbasis <strong>Laravel 10/12</strong> dengan praktik clean code, autentikasi aman,
+                    dan dokumentasi rapi.</p>
+                <p>Sedang mengerjakan beberapa produk: <em>Perumahan Digital (RW Connect)</em>, E‑Voting RSA, E‑Invoice
+                    dengan Digital Signature, dan sistem layanan service handphone.</p>
+                <div class="flex flex-wrap gap-3">
+                    <a href="https://github.com/nvnrchmn" target="_blank" rel="noopener"
+                        class="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700">GitHub</a>
+                    <a href="https://nvnrchmn.github.io/nova-resume/" target="_blank" rel="noopener"
+                        class="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700">Resume Online</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="py-16 md:py-20">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-2xl font-bold mb-8 fade-up">Keahlian Utama</h2>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div
+                    class="p-5 rounded-xl border border-slate-200/70 dark:border-slate-700/60 bg-white/60 dark:bg-slate-800/60 fade-up">
+                    <h3 class="font-semibold">Backend & Database</h3>
+                    <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Laravel 10/12, Eloquent, JWT/Sanctum,
+                        Artisan, Migrations, MySQL, Query Optimization.</p>
+                </div>
+                <div
+                    class="p-5 rounded-xl border border-slate-200/70 dark:border-slate-700/60 bg-white/60 dark:bg-slate-800/60 fade-up">
+                    <h3 class="font-semibold">Frontend</h3>
+                    <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Blade, Livewire, Tailwind, Alpine.js,
+                        Filament, responsive & dark mode.</p>
+                </div>
+                <div
+                    class="p-5 rounded-xl border border-slate-200/70 dark:border-slate-700/60 bg-white/60 dark:bg-slate-800/60 fade-up">
+                    <h3 class="font-semibold">Quality & Docs</h3>
+                    <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">SRS, diagram (Use Case, ERD/DFD),
+                        Blackbox testing, README, API docs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="py-16 md:py-20 border-t border-slate-200/70 dark:border-slate-700/60">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex items-end justify-between mb-6 fade-up">
+                <h2 class="text-2xl font-bold">Proyek Pilihan</h2>
+                <a href="https://github.com/nvnrchmn?tab=repositories" target="_blank" rel="noopener"
+                    class="text-sm hover:text-brand-500 link-underline">Semua repos</a>
+            </div>
+
+            <div id="projectGrid" class="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+                <article
+                    class="group p-5 rounded-xl border border-slate-200/70 dark:border-slate-700/60 bg-white/70 dark:bg-slate-800/60 hover:shadow-lg transition fade-up"
+                    data-title="E‑Voting App" data-tags="Laravel, RSA, Livewire"
+                    data-link="https://github.com/nvnrchmn/evoting-app" data-demo="#">
+                    <header class="flex items-center justify-between gap-3">
+                        <h3 class="font-semibold">E‑Voting App</h3>
+                        <span class="text-xs px-2 py-1 rounded-full bg-brand-600 text-white">Laravel</span>
+                    </header>
+                    <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Sistem e‑voting dengan enkripsi RSA,
+                        multi‑role, bukti PDF bertanda tangan.</p>
+                    <footer class="mt-4 flex gap-3">
+                        <a class="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 text-sm"
+                            href="https://github.com/nvnrchmn/evoting-app" target="_blank" rel="noopener">Kode</a>
+                        <a class="px-3 py-1.5 rounded-lg bg-brand-600 text-white text-sm" href="#" target="_blank"
+                            rel="noopener">Demo</a>
+                    </footer>
+                </article>
+
+                <article
+                    class="group p-5 rounded-xl border border-slate-200/70 dark:border-slate-700/60 bg-white/70 dark:bg-slate-800/60 hover:shadow-lg transition fade-up"
+                    data-title="E‑Invoice RSA" data-tags="Laravel, PDF, RSA" data-link="#" data-demo="#">
+                    <header class="flex items-center justify-between gap-3">
+                        <h3 class="font-semibold">E‑Invoice RSA</h3>
+                        <span class="text-xs px-2 py-1 rounded-full bg-brand-600 text-white">Laravel</span>
+                    </header>
+                    <p class="mt-2 text-sm">Invoice digital dengan tanda tangan RSA, verifikasi QR, dan status validasi.
+                    </p>
+                    <footer class="mt-4 flex gap-3">
+                        <a class="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 text-sm" href="#"
+                            target="_blank" rel="noopener">Kode</a>
+                        <a class="px-3 py-1.5 rounded-lg bg-brand-600 text-white text-sm" href="#" target="_blank"
+                            rel="noopener">Demo</a>
+                    </footer>
+                </article>
+
+                <article
+                    class="group p-5 rounded-xl border border-slate-200/70 dark:border-slate-700/60 bg-white/70 dark:bg-slate-800/60 hover:shadow-lg transition fade-up"
+                    data-title="RW Connect" data-tags="Livewire, Role Mgmt" data-link="#" data-demo="#">
+                    <header class="flex items-center justify-between gap-3">
+                        <h3 class="font-semibold">Perumahan Digital (RW Connect)</h3>
+                        <span class="text-xs px-2 py-1 rounded-full bg-brand-600 text-white">Livewire</span>
+                    </header>
+                    <p class="mt-2 text-sm">Portal warga: aspirasi, pengaduan, keuangan RT/RW, e‑voting, peta digital.
+                    </p>
+                    <footer class="mt-4 flex gap-3">
+                        <a class="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 text-sm" href="#"
+                            target="_blank" rel="noopener">Kode</a>
+                        <a class="px-3 py-1.5 rounded-lg bg-brand-600 text-white text-sm" href="#" target="_blank"
+                            rel="noopener">Demo</a>
+                    </footer>
+                </article>
+
+                <article
+                    class="group p-5 rounded-xl border border-slate-200/70 dark:border-slate-700/60 bg-white/70 dark:bg-slate-800/60 hover:shadow-lg transition fade-up"
+                    data-title="Electric Bill" data-tags="Laravel, Billing"
+                    data-link="https://github.com/nvnrchmn/electric-bill" data-demo="#">
+                    <header class="flex items-center justify-between gap-3">
+                        <h3 class="font-semibold">Electric Bill</h3>
+                        <span class="text-xs px-2 py-1 rounded-full bg-brand-600 text-white">Laravel</span>
+                    </header>
+                    <p class="mt-2 text-sm">Aplikasi tagihan listrik: pelanggan, penggunaan KWh, tagihan & pembayaran,
+                        laporan.</p>
+                    <footer class="mt-4 flex gap-3">
+                        <a class="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 text-sm"
+                            href="https://github.com/nvnrchmn/electric-bill" target="_blank" rel="noopener">Kode</a>
+                        <a class="px-3 py-1.5 rounded-lg bg-brand-600 text-white text-sm" href="#" target="_blank"
+                            rel="noopener">Demo</a>
+                    </footer>
+                </article>
+
+                <article
+                    class="group p-5 rounded-xl border border-slate-200/70 dark:border-slate-700/60 bg-white/70 dark:bg-slate-800/60 hover:shadow-lg transition fade-up"
+                    data-title="Service App" data-tags="Livewire, Alpine" data-link="#" data-demo="#">
+                    <header class="flex items-center justify-between gap-3">
+                        <h3 class="font-semibold">Service App (Handphone)</h3>
+                        <span class="text-xs px-2 py-1 rounded-full bg-brand-600 text-white">Livewire</span>
+                    </header>
+                    <p class="mt-2 text-sm">Tracking service: assign teknisi, status perbaikan, catatan, invoice kasir.
+                    </p>
+                    <footer class="mt-4 flex gap-3">
+                        <a class="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 text-sm" href="#"
+                            target="_blank" rel="noopener">Kode</a>
+                        <a class="px-3 py-1.5 rounded-lg bg-brand-600 text-white text-sm" href="#" target="_blank"
+                            rel="noopener">Demo</a>
+                    </footer>
+                </article>
+
+                <article
+                    class="group p-5 rounded-xl border border-slate-200/70 dark:border-slate-700/60 bg-white/70 dark:bg-slate-800/60 hover:shadow-lg transition fade-up"
+                    data-title="Mini Journaling" data-tags="Laravel, CRUD" data-link="#" data-demo="#">
+                    <header class="flex items-center justify-between gap-3">
+                        <h3 class="font-semibold">Mini Journaling App</h3>
+                        <span class="text-xs px-2 py-1 rounded-full bg-brand-600 text-white">Laravel</span>
+                    </header>
+                    <p class="mt-2 text-sm">Catatan harian ringan: auth, CRUD, UI light mode yang bersih.</p>
+                    <footer class="mt-4 flex gap-3">
+                        <a class="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 text-sm" href="#"
+                            target="_blank" rel="noopener">Kode</a>
+                        <a class="px-3 py-1.5 rounded-lg bg-brand-600 text-white text-sm" href="#" target="_blank"
+                            rel="noopener">Demo</a>
+                    </footer>
+                </article>
+            </div>
+
+            <!-- Filters -->
+            <div class="mt-8 flex flex-wrap items-center gap-3 text-sm fade-up" aria-label="Filter proyek">
+                <span class="opacity-70">Filter:</span>
+                <button class="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700" data-filter="*"
+                    aria-pressed="true">Semua</button>
+                <button class="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700"
+                    data-filter="Laravel" aria-pressed="false">Laravel</button>
+                <button class="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700"
+                    data-filter="Livewire" aria-pressed="false">Livewire</button>
+                <button class="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700" data-filter="RSA"
+                    aria-pressed="false">RSA</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 md:py-20">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="rounded-2xl p-8 md:p-10 bg-gradient-to-br from-brand-600 to-brand-800 text-white fade-up">
+                <h3 class="text-2xl font-bold">Butuh bantuan membangun aplikasi Laravel?</h3>
+                <p class="mt-2 text-white/90">Saya siap kolaborasi: dari desain sistem, implementasi, hingga
+                    dokumentasi.</p>
+                <div class="mt-5 flex flex-wrap gap-3">
+                    <a href="mailto:nv.nrchmn@gmail.com" class="px-4 py-2 rounded-lg bg-white text-brand-800">Email
+                        Saya</a>
+                    <a href="https://wa.me/628983342429" target="_blank" rel="noopener"
+                        class="px-4 py-2 rounded-lg border border-white/70">WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <footer id="contact" class="border-t border-slate-200/70 dark:border-slate-700/60 py-10">
+        <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-6 items-center">
+            <div class="fade-up">
+                <p class="font-semibold">© <span id="year"></span> Nova Nurachman</p>
+                <p class="text-sm text-slate-600 dark:text-slate-300">Bekasi, Indonesia · <a class="hover:underline"
+                        href="mailto:nv.nrchmn@gmail.com">nv.nrchmn@gmail.com</a></p>
+            </div>
+            <div class="flex md:justify-end gap-3 text-sm fade-up">
+                <a class="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700" href="#home">Kembali ke
+                    atas</a>
+                <a class="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700"
+                    href="https://github.com/nvnrchmn" target="_blank" rel="noopener">GitHub</a>
+                <a class="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700"
+                    href="https://www.linkedin.com/in/nvnrchmn/" target="_blank" rel="noopener">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Theme toggle (with aria + icon sync)
+        const btn = document.getElementById('themeToggle');
+        const iconSun = document.getElementById('iconSun');
+        const iconMoon = document.getElementById('iconMoon');
+        const syncIcons = () => {
+            const isDark = document.documentElement.classList.contains('dark');
+            iconSun.classList.toggle('hidden', !isDark);
+            iconMoon.classList.toggle('hidden', isDark);
+            btn.setAttribute('aria-pressed', String(isDark));
+            // Persist
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            // Theme color meta to match bg (nice on mobile chrome)
+            const meta = document.querySelector('meta[name="theme-color"]');
+            if (meta) meta.setAttribute('content', isDark ? '#0b1220' : '#0ea5e9');
+        };
+        btn.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            syncIcons();
+        });
+        // initial
+        syncIcons();
+
+        // Project filters (accessible)
+        const grid = document.getElementById('projectGrid');
+        const filterBtns = document.querySelectorAll('[data-filter]');
+        filterBtns.forEach(b => b.addEventListener('click', () => {
+            const target = b.getAttribute('data-filter');
+            [...grid.children].forEach(card => {
+                const tags = (card.getAttribute('data-tags') || '').split(',').map(s => s.trim());
+                const show = target === '*' || tags.includes(target);
+                card.classList.toggle('hidden', !show);
+            });
+            filterBtns.forEach(x => { x.classList.remove('bg-brand-600', 'text-white'); x.setAttribute('aria-pressed', 'false'); });
+            b.classList.add('bg-brand-600', 'text-white');
+            b.setAttribute('aria-pressed', 'true');
+        }));
+
+        // Reveal on scroll
+        const io = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('revealed'); });
+        }, { threshold: 0.12 });
+        document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+    </script>
+</body>
+
+</html>
