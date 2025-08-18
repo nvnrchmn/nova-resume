@@ -11,58 +11,39 @@
     <link rel="canonical" href="https://nvnrchmn.github.io/nova-resume/" />
     <meta name="theme-color" content="#0ea5e9" />
 
+    <!-- Icons / Favicons -->
+    <link rel="icon" type="image/svg+xml" href="./icons/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="./icons/favicon-192.png" />
+    <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+    <link rel="mask-icon" href="./icons/safari-pinned-tab.svg" color="#2563eb" />
+
     <!-- Open Graph / Twitter -->
     <meta property="og:title" content="Nova Nurachman — Portfolio & Resume" />
     <meta property="og:description" content="Web developer & IT support. Jelajahi proyek dan unduh CV." />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://nvnrchmn.github.io/nova-resume/og-cover.png" />
+    <meta property="og:image" content="https://nvnrchmn.github.io/nova-resume/img/og-cover.png" />
     <meta property="og:url" content="https://nvnrchmn.github.io/nova-resume/" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Nova Nurachman — Portfolio & Resume" />
     <meta name="twitter:description" content="Web developer & IT support. Jelajahi proyek dan unduh CV." />
-    <meta name="twitter:image" content="https://nvnrchmn.github.io/nova-resume/og-cover.png" />
+    <meta name="twitter:image" content="https://nvnrchmn.github.io/nova-resume/img/og-cover.png" />
 
     <!-- JSON-LD Person + WebSite -->
-    <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Nova Nurachman",
-    "url": "https://nvnrchmn.github.io/nova-resume/",
-    "sameAs": [
-      "https://www.linkedin.com/in/nvnrchmn/",
-      "https://github.com/nvnrchmn"
-    ],
-    "jobTitle": "Web Developer & IT Support",
-    "knowsAbout": ["Laravel","Livewire","MySQL","TailwindCSS","TOGAF","Inventory Management"]
-  }
-  </script>
-    <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "url": "https://nvnrchmn.github.io/nova-resume/",
-    "name": "Nova Portfolio",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://www.google.com/search?q=site:nvnrchmn.github.io+nova-resume+{search_term}",
-      "query-input": "required name=search_term"
-    }
-  }
-  </script>
+    <script
+        type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Nova Nurachman","url":"https://nvnrchmn.github.io/nova-resume/","sameAs":["https://www.linkedin.com/in/nvnrchmn/","https://github.com/nvnrchmn"],"jobTitle":"Web Developer & IT Support","knowsAbout":["Laravel","Livewire","MySQL","TailwindCSS","TOGAF","Inventory Management"]}</script>
+    <script
+        type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","url":"https://nvnrchmn.github.io/nova-resume/","name":"Nova Portfolio","potentialAction":{"@type":"SearchAction","target":"https://www.google.com/search?q=site:nvnrchmn.github.io+nova-resume+{search_term}","query-input":"required name=search_term"}}</script>
 
-    <!-- Tailwind (CDN) with dark mode class strategy -->
+    <!-- Tailwind (CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            darkMode: 'class', // IMPORTANT: enables class-based dark mode
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        brand: {
-                            50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe', 300: '#93c5fd', 400: '#60a5fa',
-                            500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 800: '#1e40af', 900: '#1e3a8a'
-                        }
+                        brand: { 50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe', 300: '#93c5fd', 400: '#60a5fa', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 800: '#1e40af', 900: '#1e3a8a' }
                     }
                 }
             }
@@ -103,18 +84,42 @@
             outline: 3px solid rgb(56 189 248);
             outline-offset: 2px
         }
+
+        /* ==== MOBILE SHEET (fix: no layout shift/gap when closed) ==== */
+        .sheet {
+            position: absolute;
+            /* out of normal flow */
+            /* inset: auto 0 0 0; */
+            /* stick to bottom of header */
+            left: 0;
+            right: 0;
+            top: 100%;
+            /* right under the header */
+            max-height: 0;
+            /* collapsed */
+            overflow: hidden;
+            /* hide contents when closed */
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-8px);
+            transition: opacity .2s ease, transform .2s ease, max-height .2s ease;
+        }
+
+        .sheet.open {
+            max-height: calc(100vh - var(--header-h, 64px));
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        /* Smooth anchor offset equal to header height */
+        html {
+            scroll-padding-top: var(--header-h, 72px)
+        }
     </style>
 
-    <!-- Dark mode boot: set as early as possible to avoid flash -->
-    <script>
-            (function () {
-                try {
-                    const saved = localStorage.getItem('theme');
-                    const preferDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-                    if (saved === 'dark' || (!saved && preferDark)) document.documentElement.classList.add('dark');
-                } catch (e) { }
-            })();
-    </script>
+    <!-- Dark mode boot -->
+    <script>(function () { try { const s = localStorage.getItem('theme'); const d = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches; if (s === 'dark' || (!s && d)) document.documentElement.classList.add('dark'); } catch (e) { } })();</script>
 </head>
 
 <body class="bg-white text-slate-800 dark:bg-slate-900 dark:text-slate-100 antialiased">
@@ -124,17 +129,21 @@
 
     <!-- Header -->
     <header
-        class="sticky top-0 z-30 border-b border-slate-200/70 dark:border-slate-700/60 backdrop-blur bg-white/70 dark:bg-slate-900/70">
-        <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+        class="sticky top-0 z-30 border-b border-slate-200/70 dark:border-slate-700/60 backdrop-blur bg-white/70 dark:bg-slate-900/70 relative">
+        <div class="max-w-6xl mx-auto px-3 sm:px-4 py-2.5 sm:py-3 flex items-center justify-between">
             <a href="#home" class="font-semibold tracking-tight">Nova Nurachman<span class="text-brand-500">.</span></a>
-            <nav class="hidden md:flex gap-6 text-sm" aria-label="Navigasi utama">
-                <a href="#about" class="hover:text-brand-500 link-underline">Tentang</a>
-                <a href="#skills" class="hover:text-brand-500 link-underline">Keahlian</a>
-                <a href="#projects" class="hover:text-brand-500 link-underline">Proyek</a>
-                <a href="#contact" class="hover:text-brand-500 link-underline">Kontak</a>
+
+            <!-- Desktop nav -->
+            <nav id="desktopNav" class="hidden md:flex gap-6 text-sm" aria-label="Navigasi utama">
+                <a href="#about" data-spy="about" class="hover:text-brand-500 link-underline">Tentang</a>
+                <a href="#skills" data-spy="skills" class="hover:text-brand-500 link-underline">Keahlian</a>
+                <a href="#projects" data-spy="projects" class="hover:text-brand-500 link-underline">Proyek</a>
+                <a href="#contact" data-spy="contact" class="hover:text-brand-500 link-underline">Kontak</a>
             </nav>
+
+            <!-- Right actions -->
             <div class="flex items-center gap-2">
-                <a href="./Nova Nurachman - CV ATS.pdf"
+                <a href="./Nova-Nurachman-CV-ATS.pdf"
                     class="hidden sm:inline-flex px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 hover:border-brand-500 text-sm"
                     target="_blank" rel="noopener">Unduh CV</a>
                 <button id="themeToggle" class="p-2 rounded-lg border border-slate-300 dark:border-slate-700 focus-ring"
@@ -149,25 +158,58 @@
                         <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
                     </svg>
                 </button>
+                <!-- Mobile burger -->
+                <button id="menuBtn"
+                    class="md:hidden p-2 rounded-lg border border-slate-300 dark:border-slate-700 focus-ring"
+                    aria-label="Buka menu" aria-expanded="false" aria-controls="mobileMenu">
+                    <svg id="iconMenu" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 6h18M3 12h18M3 18h18" />
+                    </svg>
+                    <svg id="iconClose" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 hidden" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile nav sheet -->
+        <div id="mobileMenu"
+            class="sheet md:hidden z-40 border-t border-slate-200/70 dark:border-slate-700/60 bg-white/95 dark:bg-slate-900/95 backdrop-blur"
+            aria-hidden="true">
+            <div class="max-w-6xl mx-auto px-4 py-3 grid gap-1 text-sm">
+                <a href="#about" data-spy="about"
+                    class="py-3 border-b border-slate-200/70 dark:border-slate-700/60">Tentang</a>
+                <a href="#skills" data-spy="skills"
+                    class="py-3 border-b border-slate-200/70 dark:border-slate-700/60">Keahlian</a>
+                <a href="#projects" data-spy="projects"
+                    class="py-3 border-b border-slate-200/70 dark:border-slate-700/60">Proyek</a>
+                <a href="#contact" data-spy="contact" class="py-3">Kontak</a>
+                <a href="./Nova-Nurachman-CV-ATS.pdf" target="_blank" rel="noopener"
+                    class="mt-1 inline-flex items-center justify-center px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-700">Unduh
+                    CV</a>
             </div>
         </div>
     </header>
 
     <!-- Hero -->
     <section id="home" class="relative overflow-hidden">
-        <div class="max-w-6xl mx-auto px-4 py-20 md:py-28 grid md:grid-cols-2 gap-10 items-center">
+        <div
+            class="max-w-6xl mx-auto px-4 pt-8 pb-12 sm:pt-12 sm:pb-16 md:pt-20 md:pb-24 grid md:grid-cols-2 gap-6 sm:gap-10 items-center">
             <div class="fade-up">
                 <div
-                    class="inline-flex items-center text-xs px-2 py-1 rounded-full border border-slate-300/70 dark:border-slate-700/70 mb-4">
+                    class="inline-flex items-center text-[10px] sm:text-xs px-2 py-1 rounded-full border border-slate-300/70 dark:border-slate-700/70 mb-2 sm:mb-4">
                     Tersedia untuk peluang kerja</div>
-                <h1 class="text-3xl md:text-5xl font-extrabold leading-tight tracking-tight">
-                    Nova Nurachman
-                    <span class="block text-brand-600 dark:text-brand-400">Web Developer & IT Support</span>
+                <h1 class="text-2xl sm:text-3xl md:text-5xl font-extrabold leading-tight tracking-tight">Nova Nurachman
+                    <span class="block text-brand-600 dark:text-brand-400">Administrasi & Operasional • Inventory & Aset
+                    </span>
                 </h1>
-                <p class="mt-4 text-slate-600 dark:text-slate-300 max-w-prose">Membangun aplikasi Laravel yang aman dan
-                    bersih. Berpengalaman pada manajemen gudang & aset, integrasi digital signature, e‑voting, dan
-                    dashboard operasional.</p>
-                <div class="mt-6 flex flex-wrap gap-3">
+                <p class="mt-2 sm:mt-4 text-slate-600 dark:text-slate-300 max-w-prose text-sm sm:text-base">Profesional
+                    multitalenta di bidang <strong>administrasi & pengelolaan data</strong>, serta <strong>manajemen
+                        aset/inventory</strong>. Siap ditempatkan pada peran umum yang relevan dengan keahlian tersebut.
+                </p>
+                <div class="mt-5 sm:mt-6 flex flex-wrap gap-3">
                     <a href="#projects" class="px-4 py-2 rounded-lg bg-brand-600 hover:bg-brand-700 text-white">Lihat
                         Proyek</a>
                     <a href="mailto:nv.nrchmn@gmail.com"
@@ -180,187 +222,198 @@
                 <div
                     class="aspect-square rounded-2xl bg-gradient-to-br from-brand-200/60 to-brand-400/50 dark:from-brand-400/20 dark:to-brand-700/20 ring-1 ring-inset ring-slate-200/60 dark:ring-slate-700/60 p-1">
                     <div
-                        class="h-full w-full rounded-2xl bg-white dark:bg-slate-800 grid place-items-center text-center p-8">
+                        class="h-full w-full rounded-2xl bg-white dark:bg-slate-800 grid place-items-center text-center p-6 sm:p-8">
                         <div class="flex flex-col items-center">
-                            <img src="img/profile.jpeg" class="w-80 h-80 rounded-full" alt="" srcset="">
-                            <p class="text-sm uppercase tracking-widest text-slate-500 dark:text-slate-400 mt-4">Tech
-                                Stack
-                            </p>
-                            <p class="mt-3 text-xl font-semibold">Laravel • Livewire • MySQL • Tailwind • Alpine •
-                                Filament</p>
+                            <picture>
+                                <img src="img/profile.jpeg" alt="Foto Nova Nurachman" width="720" height="720"
+                                    loading="eager" fetchpriority="high" decoding="async"
+                                    class="rounded-full w-32 h-32 sm:w-48 sm:h-48 md:w-72 md:h-72 object-cover" />
+                            </picture>
+                            <p
+                                class="text-xs sm:text-sm uppercase tracking-widest text-slate-500 dark:text-slate-400 mt-4">
+                                Administrasi & Operasional</p>
+                            <p
+                                class="text-xs sm:text-sm uppercase tracking-widest text-slate-500 dark:text-slate-400 mt-4">
+                                Inventory & Aset</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
     </section>
 
     <!-- About -->
-    <section id="about" class="py-16 md:py-20 border-t border-slate-200/70 dark:border-slate-700/60">
-        <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-3 gap-10">
+    <section id="about"
+        class="scroll-mt-[var(--header-h,72px)] py-14 sm:py-16 md:py-20 border-t border-slate-200/70 dark:border-slate-700/60">
+        <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-3 gap-6 sm:gap-10">
             <div class="fade-up">
-                <h2 class="text-2xl font-bold">Tentang Saya</h2>
+                <h2 class="text-xl sm:text-2xl font-bold">Tentang Saya</h2>
             </div>
-            <div class="md:col-span-2 space-y-4 text-slate-700 dark:text-slate-300 fade-up">
-                <p>Profesional multitalenta dengan pengalaman di <strong>administrasi gudang & aset</strong>, layanan
-                    pelanggan, dan <strong>dukungan teknis IT</strong>. Fokus utama saat ini adalah pengembangan
-                    aplikasi web berbasis <strong>Laravel 10/12</strong> dengan praktik clean code, autentikasi aman,
-                    dan dokumentasi rapi.</p>
-                <p>Sedang mengerjakan beberapa produk: <em>Perumahan Digital (RW Connect)</em>, E‑Voting RSA, E‑Invoice
-                    dengan Digital Signature, dan sistem layanan service handphone.</p>
+            <div class="md:col-span-2 space-y-4 text-slate-700 dark:text-slate-300 fade-up text-sm sm:text-base">
+                <p>Profesional multitalenta dengan pengalaman di bidang <strong>administrasi & pengelolaan
+                        data</strong>, <strong>manajemen aset/inventory</strong>, dokumentasi rapi, dan solusi web
+                    sederhana. Cepat belajar, adaptif, dan
+                    komunikatif dalam tim maupun mandiri.</p>
+                <p>Saat ini juga mengembangkan aplikasi web berbasis <strong>Laravel</strong> dan teknologi pendukung
+                    (Livewire, Tailwind, MySQL) sebagai portofolio tambahan.</p>
                 <div class="flex flex-wrap gap-3">
                     <a href="https://github.com/nvnrchmn" target="_blank" rel="noopener"
                         class="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700">GitHub</a>
-                    <a href="https://nvnrchmn.github.io/nova-resume/" target="_blank" rel="noopener"
-                        class="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700">Resume Online</a>
+                    <a href="./Nova-Nurachman-CV-ATS.pdf" target="_blank" rel="noopener"
+                        class="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700">Unduh CV</a>
                 </div>
             </div>
         </div>
     </section>
 
+
     <!-- Skills -->
-    <section id="skills" class="py-16 md:py-20">
+    <section id="skills" class="scroll-mt-[var(--header-h,72px)] py-14 sm:py-16 md:py-20">
         <div class="max-w-6xl mx-auto px-4">
-            <h2 class="text-2xl font-bold mb-8 fade-up">Keahlian Utama</h2>
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <h2 class="text-xl sm:text-2xl font-bold mb-6 sm:mb-8 fade-up">Keahlian Utama</h2>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                 <div
-                    class="p-5 rounded-xl border border-slate-200/70 dark:border-slate-700/60 bg-white/60 dark:bg-slate-800/60 fade-up">
-                    <h3 class="font-semibold">Backend & Database</h3>
-                    <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Laravel 10/12, Eloquent, JWT/Sanctum,
-                        Artisan, Migrations, MySQL, Query Optimization.</p>
+                    class="p-4 sm:p-5 rounded-xl border border-slate-200/70 dark:border-slate-700/60 bg-white/60 dark:bg-slate-800/60 fade-up">
+                    <h3 class="font-semibold">Administrasi & Operasional</h3>
+                    <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Pengelolaan data & dokumen, pencatatan
+                        aset/inventory, penyusunan laporan, serta dukungan administrasi harian.</p>
                 </div>
                 <div
-                    class="p-5 rounded-xl border border-slate-200/70 dark:border-slate-700/60 bg-white/60 dark:bg-slate-800/60 fade-up">
-                    <h3 class="font-semibold">Frontend</h3>
-                    <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Blade, Livewire, Tailwind, Alpine.js,
-                        Filament, responsive & dark mode.</p>
+                    class="p-4 sm:p-5 rounded-xl border border-slate-200/70 dark:border-slate-700/60 bg-white/60 dark:bg-slate-800/60 fade-up">
+                    <h3 class="font-semibold">Manajemen Aset & Gudang</h3>
+                    <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Monitoring stok & aset, kontrol
+                        keluar/masuk barang, pelacakan perbaikan, dan optimalisasi efisiensi pergudangan.</p>
                 </div>
                 <div
-                    class="p-5 rounded-xl border border-slate-200/70 dark:border-slate-700/60 bg-white/60 dark:bg-slate-800/60 fade-up">
-                    <h3 class="font-semibold">Quality & Docs</h3>
-                    <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">SRS, diagram (Use Case, ERD/DFD),
-                        Blackbox testing, README, API docs.</p>
+                    class="p-4 sm:p-5 rounded-xl border border-slate-200/70 dark:border-slate-700/60 bg-white/60 dark:bg-slate-800/60 fade-up">
+                    <h3 class="font-semibold">IT Support & Teknologi</h3>
+                    <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Instalasi & troubleshooting
+                        hardware/software, jaringan dasar, serta pengembangan aplikasi web sederhana dengan HTML, CSS,
+                        PHP/Laravel, dan MySQL.</p>
+                </div>
+                <div
+                    class="p-4 sm:p-5 rounded-xl border border-slate-200/70 dark:border-slate-700/60 bg-white/60 dark:bg-slate-800/60 fade-up">
+                    <h3 class="font-semibold">Analisis & Laporan</h3>
+                    <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Pengolahan data dengan Microsoft Excel
+                        (Pivot Table, Chart), penyusunan laporan analitis, serta dokumentasi proses kerja.</p>
+                </div>
+                <div
+                    class="p-4 sm:p-5 rounded-xl border border-slate-200/70 dark:border-slate-700/60 bg-white/60 dark:bg-slate-800/60 fade-up">
+                    <h3 class="font-semibold">Komunikasi & Layanan</h3>
+                    <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Kemampuan komunikasi efektif, pelayanan
+                        pelanggan, koordinasi lintas tim, dan adaptasi di lingkungan kerja dinamis.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Projects -->
-    <section id="projects" class="py-16 md:py-20 border-t border-slate-200/70 dark:border-slate-700/60">
+    <section id="projects"
+        class="scroll-mt-[var(--header-h,72px)] py-14 sm:py-16 md:py-20 border-t border-slate-200/70 dark:border-slate-700/60">
         <div class="max-w-6xl mx-auto px-4">
-            <div class="flex items-end justify-between mb-6 fade-up">
-                <h2 class="text-2xl font-bold">Proyek Pilihan</h2>
+            <div class="flex items-end justify-between mb-4 sm:mb-6 fade-up">
+                <h2 class="text-xl sm:text-2xl font-bold">Proyek Pilihan</h2>
                 <a href="https://github.com/nvnrchmn?tab=repositories" target="_blank" rel="noopener"
-                    class="text-sm hover:text-brand-500 link-underline">Semua repos</a>
+                    class="text-xs sm:text-sm hover:text-brand-500 link-underline">Semua repos</a>
             </div>
 
-            <div id="projectGrid" class="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+            <div id="projectGrid" class="grid gap-4 sm:gap-6 md:grid-cols-2 xl:grid-cols-3">
+                <!-- Cards (same as before) -->
                 <article
                     class="group p-5 rounded-xl border border-slate-200/70 dark:border-slate-700/60 bg-white/70 dark:bg-slate-800/60 hover:shadow-lg transition fade-up"
                     data-title="E‑Voting App" data-tags="Laravel, RSA, Livewire"
                     data-link="https://github.com/nvnrchmn/evoting-app" data-demo="#">
                     <header class="flex items-center justify-between gap-3">
-                        <h3 class="font-semibold">E‑Voting App</h3>
-                        <span class="text-xs px-2 py-1 rounded-full bg-brand-600 text-white">Laravel</span>
+                        <h3 class="font-semibold">E‑Voting App</h3><span
+                            class="text-xs px-2 py-1 rounded-full bg-brand-600 text-white">Laravel</span>
                     </header>
                     <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Sistem e‑voting dengan enkripsi RSA,
                         multi‑role, bukti PDF bertanda tangan.</p>
-                    <footer class="mt-4 flex gap-3">
-                        <a class="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 text-sm"
-                            href="https://github.com/nvnrchmn/evoting-app" target="_blank" rel="noopener">Kode</a>
-                        <a class="px-3 py-1.5 rounded-lg bg-brand-600 text-white text-sm" href="#" target="_blank"
-                            rel="noopener">Demo</a>
-                    </footer>
+                    <footer class="mt-4 flex gap-3"><a
+                            class="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 text-sm"
+                            href="https://github.com/nvnrchmn/evoting-app" target="_blank" rel="noopener">Kode</a><a
+                            class="px-3 py-1.5 rounded-lg bg-brand-600 text-white text-sm" href="#" target="_blank"
+                            rel="noopener">Demo</a></footer>
                 </article>
-
                 <article
                     class="group p-5 rounded-xl border border-slate-200/70 dark:border-slate-700/60 bg-white/70 dark:bg-slate-800/60 hover:shadow-lg transition fade-up"
                     data-title="E‑Invoice RSA" data-tags="Laravel, PDF, RSA" data-link="#" data-demo="#">
                     <header class="flex items-center justify-between gap-3">
-                        <h3 class="font-semibold">E‑Invoice RSA</h3>
-                        <span class="text-xs px-2 py-1 rounded-full bg-brand-600 text-white">Laravel</span>
+                        <h3 class="font-semibold">E‑Invoice RSA</h3><span
+                            class="text-xs px-2 py-1 rounded-full bg-brand-600 text-white">Laravel</span>
                     </header>
                     <p class="mt-2 text-sm">Invoice digital dengan tanda tangan RSA, verifikasi QR, dan status validasi.
                     </p>
-                    <footer class="mt-4 flex gap-3">
-                        <a class="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 text-sm" href="#"
-                            target="_blank" rel="noopener">Kode</a>
-                        <a class="px-3 py-1.5 rounded-lg bg-brand-600 text-white text-sm" href="#" target="_blank"
-                            rel="noopener">Demo</a>
-                    </footer>
+                    <footer class="mt-4 flex gap-3"><a
+                            class="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 text-sm"
+                            href="#" target="_blank" rel="noopener">Kode</a><a
+                            class="px-3 py-1.5 rounded-lg bg-brand-600 text-white text-sm" href="#" target="_blank"
+                            rel="noopener">Demo</a></footer>
                 </article>
-
                 <article
                     class="group p-5 rounded-xl border border-slate-200/70 dark:border-slate-700/60 bg-white/70 dark:bg-slate-800/60 hover:shadow-lg transition fade-up"
                     data-title="RW Connect" data-tags="Livewire, Role Mgmt" data-link="#" data-demo="#">
                     <header class="flex items-center justify-between gap-3">
-                        <h3 class="font-semibold">Perumahan Digital (RW Connect)</h3>
-                        <span class="text-xs px-2 py-1 rounded-full bg-brand-600 text-white">Livewire</span>
+                        <h3 class="font-semibold">Perumahan Digital (RW Connect)</h3><span
+                            class="text-xs px-2 py-1 rounded-full bg-brand-600 text-white">Livewire</span>
                     </header>
                     <p class="mt-2 text-sm">Portal warga: aspirasi, pengaduan, keuangan RT/RW, e‑voting, peta digital.
                     </p>
-                    <footer class="mt-4 flex gap-3">
-                        <a class="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 text-sm" href="#"
-                            target="_blank" rel="noopener">Kode</a>
-                        <a class="px-3 py-1.5 rounded-lg bg-brand-600 text-white text-sm" href="#" target="_blank"
-                            rel="noopener">Demo</a>
-                    </footer>
+                    <footer class="mt-4 flex gap-3"><a
+                            class="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 text-sm"
+                            href="#" target="_blank" rel="noopener">Kode</a><a
+                            class="px-3 py-1.5 rounded-lg bg-brand-600 text-white text-sm" href="#" target="_blank"
+                            rel="noopener">Demo</a></footer>
                 </article>
-
                 <article
                     class="group p-5 rounded-xl border border-slate-200/70 dark:border-slate-700/60 bg-white/70 dark:bg-slate-800/60 hover:shadow-lg transition fade-up"
                     data-title="Electric Bill" data-tags="Laravel, Billing"
                     data-link="https://github.com/nvnrchmn/electric-bill" data-demo="#">
                     <header class="flex items-center justify-between gap-3">
-                        <h3 class="font-semibold">Electric Bill</h3>
-                        <span class="text-xs px-2 py-1 rounded-full bg-brand-600 text-white">Laravel</span>
+                        <h3 class="font-semibold">Electric Bill</h3><span
+                            class="text-xs px-2 py-1 rounded-full bg-brand-600 text-white">Laravel</span>
                     </header>
                     <p class="mt-2 text-sm">Aplikasi tagihan listrik: pelanggan, penggunaan KWh, tagihan & pembayaran,
                         laporan.</p>
-                    <footer class="mt-4 flex gap-3">
-                        <a class="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 text-sm"
-                            href="https://github.com/nvnrchmn/electric-bill" target="_blank" rel="noopener">Kode</a>
-                        <a class="px-3 py-1.5 rounded-lg bg-brand-600 text-white text-sm" href="#" target="_blank"
-                            rel="noopener">Demo</a>
-                    </footer>
+                    <footer class="mt-4 flex gap-3"><a
+                            class="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 text-sm"
+                            href="https://github.com/nvnrchmn/electric-bill" target="_blank" rel="noopener">Kode</a><a
+                            class="px-3 py-1.5 rounded-lg bg-brand-600 text-white text-sm" href="#" target="_blank"
+                            rel="noopener">Demo</a></footer>
                 </article>
-
                 <article
                     class="group p-5 rounded-xl border border-slate-200/70 dark:border-slate-700/60 bg-white/70 dark:bg-slate-800/60 hover:shadow-lg transition fade-up"
                     data-title="Service App" data-tags="Livewire, Alpine" data-link="#" data-demo="#">
                     <header class="flex items-center justify-between gap-3">
-                        <h3 class="font-semibold">Service App (Handphone)</h3>
-                        <span class="text-xs px-2 py-1 rounded-full bg-brand-600 text-white">Livewire</span>
+                        <h3 class="font-semibold">Service App (Handphone)</h3><span
+                            class="text-xs px-2 py-1 rounded-full bg-brand-600 text-white">Livewire</span>
                     </header>
                     <p class="mt-2 text-sm">Tracking service: assign teknisi, status perbaikan, catatan, invoice kasir.
                     </p>
-                    <footer class="mt-4 flex gap-3">
-                        <a class="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 text-sm" href="#"
-                            target="_blank" rel="noopener">Kode</a>
-                        <a class="px-3 py-1.5 rounded-lg bg-brand-600 text-white text-sm" href="#" target="_blank"
-                            rel="noopener">Demo</a>
-                    </footer>
+                    <footer class="mt-4 flex gap-3"><a
+                            class="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 text-sm"
+                            href="#" target="_blank" rel="noopener">Kode</a><a
+                            class="px-3 py-1.5 rounded-lg bg-brand-600 text-white text-sm" href="#" target="_blank"
+                            rel="noopener">Demo</a></footer>
                 </article>
-
                 <article
                     class="group p-5 rounded-xl border border-slate-200/70 dark:border-slate-700/60 bg-white/70 dark:bg-slate-800/60 hover:shadow-lg transition fade-up"
                     data-title="Mini Journaling" data-tags="Laravel, CRUD" data-link="#" data-demo="#">
                     <header class="flex items-center justify-between gap-3">
-                        <h3 class="font-semibold">Mini Journaling App</h3>
-                        <span class="text-xs px-2 py-1 rounded-full bg-brand-600 text-white">Laravel</span>
+                        <h3 class="font-semibold">Mini Journaling App</h3><span
+                            class="text-xs px-2 py-1 rounded-full bg-brand-600 text-white">Laravel</span>
                     </header>
                     <p class="mt-2 text-sm">Catatan harian ringan: auth, CRUD, UI light mode yang bersih.</p>
-                    <footer class="mt-4 flex gap-3">
-                        <a class="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 text-sm" href="#"
-                            target="_blank" rel="noopener">Kode</a>
-                        <a class="px-3 py-1.5 rounded-lg bg-brand-600 text-white text-sm" href="#" target="_blank"
-                            rel="noopener">Demo</a>
-                    </footer>
+                    <footer class="mt-4 flex gap-3"><a
+                            class="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 text-sm"
+                            href="#" target="_blank" rel="noopener">Kode</a><a
+                            class="px-3 py-1.5 rounded-lg bg-brand-600 text-white text-sm" href="#" target="_blank"
+                            rel="noopener">Demo</a></footer>
                 </article>
             </div>
 
             <!-- Filters -->
-            <div class="mt-8 flex flex-wrap items-center gap-3 text-sm fade-up" aria-label="Filter proyek">
+            <div class="mt-6 sm:mt-8 flex flex-wrap items-center gap-2 sm:gap-3 text-xs sm:text-sm fade-up"
+                aria-label="Filter proyek">
                 <span class="opacity-70">Filter:</span>
                 <button class="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700" data-filter="*"
                     aria-pressed="true">Semua</button>
@@ -375,13 +428,15 @@
     </section>
 
     <!-- CTA -->
-    <section class="py-16 md:py-20">
+    <section
+        class="py-14 sm:py-16 md:py-20 bg-gradient-to-br from-brand-50 to-brand-100 dark:from-brand-900/20 dark:to-brand-800/20">
         <div class="max-w-6xl mx-auto px-4">
-            <div class="rounded-2xl p-8 md:p-10 bg-gradient-to-br from-brand-600 to-brand-800 text-white fade-up">
-                <h3 class="text-2xl font-bold">Butuh bantuan membangun aplikasi Laravel?</h3>
-                <p class="mt-2 text-white/90">Saya siap kolaborasi: dari desain sistem, implementasi, hingga
-                    dokumentasi.</p>
-                <div class="mt-5 flex flex-wrap gap-3">
+            <div
+                class="rounded-2xl p-6 sm:p-8 md:p-10 bg-gradient-to-br from-brand-600 to-brand-800 text-white fade-up">
+                <h3 class="text-lg sm:text-2xl font-bold">Butuh bantuan membangun aplikasi Laravel?</h3>
+                <p class="mt-2 text-white/90 text-sm sm:text-base">Saya siap kolaborasi: dari desain sistem,
+                    implementasi, hingga dokumentasi.</p>
+                <div class="mt-4 sm:mt-5 flex flex-wrap gap-3">
                     <a href="mailto:nv.nrchmn@gmail.com" class="px-4 py-2 rounded-lg bg-white text-brand-800">Email
                         Saya</a>
                     <a href="https://wa.me/628983342429" target="_blank" rel="noopener"
@@ -392,14 +447,15 @@
     </section>
 
     <!-- Contact -->
-    <footer id="contact" class="border-t border-slate-200/70 dark:border-slate-700/60 py-10">
-        <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-6 items-center">
+    <footer id="contact"
+        class="scroll-mt-[var(--header-h,72px)] border-t border-slate-200/70 dark:border-slate-700/60 py-8 sm:py-10">
+        <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-4 sm:gap-6 items-center">
             <div class="fade-up">
-                <p class="font-semibold">© <span id="year"></span> Nova Nurachman</p>
-                <p class="text-sm text-slate-600 dark:text-slate-300">Bekasi, Indonesia · <a class="hover:underline"
-                        href="mailto:nv.nrchmn@gmail.com">nv.nrchmn@gmail.com</a></p>
+                <p class="font-semibold text-sm sm:text-base">© <span id="year"></span> Nova Nurachman</p>
+                <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300">Bekasi, Indonesia · <a
+                        class="hover:underline" href="mailto:nv.nrchmn@gmail.com">nv.nrchmn@gmail.com</a></p>
             </div>
-            <div class="flex md:justify-end gap-3 text-sm fade-up">
+            <div class="flex md:justify-end gap-2 sm:gap-3 text-xs sm:text-sm fade-up">
                 <a class="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700" href="#home">Kembali ke
                     atas</a>
                 <a class="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700"
@@ -414,7 +470,7 @@
         // Year
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // Theme toggle (with aria + icon sync)
+        // Theme toggle
         const btn = document.getElementById('themeToggle');
         const iconSun = document.getElementById('iconSun');
         const iconMoon = document.getElementById('iconMoon');
@@ -423,20 +479,44 @@
             iconSun.classList.toggle('hidden', !isDark);
             iconMoon.classList.toggle('hidden', isDark);
             btn.setAttribute('aria-pressed', String(isDark));
-            // Persist
             localStorage.setItem('theme', isDark ? 'dark' : 'light');
-            // Theme color meta to match bg (nice on mobile chrome)
             const meta = document.querySelector('meta[name="theme-color"]');
             if (meta) meta.setAttribute('content', isDark ? '#0b1220' : '#0ea5e9');
         };
-        btn.addEventListener('click', () => {
-            document.documentElement.classList.toggle('dark');
-            syncIcons();
-        });
-        // initial
+        btn.addEventListener('click', () => { document.documentElement.classList.toggle('dark'); syncIcons(); });
         syncIcons();
 
-        // Project filters (accessible)
+        // Header height → CSS var (keeps anchors & sheet aligned)
+        const headerEl = document.querySelector('header');
+        function setHeaderH() {
+            document.documentElement.style.setProperty('--header-h', headerEl.offsetHeight + 'px');
+        }
+        window.addEventListener('load', setHeaderH);
+        window.addEventListener('resize', setHeaderH);
+
+        // Mobile menu
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const iconMenu = document.getElementById('iconMenu');
+        const iconClose = document.getElementById('iconClose');
+        function closeMenu() {
+            mobileMenu.classList.remove('open');
+            mobileMenu.setAttribute('aria-hidden', 'true');
+            iconMenu.classList.remove('hidden');
+            iconClose.classList.add('hidden');
+            menuBtn.setAttribute('aria-expanded', 'false');
+        }
+        function openMenu() {
+            mobileMenu.classList.add('open');
+            mobileMenu.setAttribute('aria-hidden', 'false');
+            iconMenu.classList.add('hidden');
+            iconClose.classList.remove('hidden');
+            menuBtn.setAttribute('aria-expanded', 'true');
+        }
+        menuBtn.addEventListener('click', () => { mobileMenu.classList.contains('open') ? closeMenu() : openMenu(); });
+        mobileMenu.addEventListener('click', e => { if (e.target.tagName === 'A') closeMenu(); });
+
+        // Project filters
         const grid = document.getElementById('projectGrid');
         const filterBtns = document.querySelectorAll('[data-filter]');
         filterBtns.forEach(b => b.addEventListener('click', () => {
@@ -452,11 +532,69 @@
         }));
 
         // Reveal on scroll
-        const io = new IntersectionObserver(entries => {
-            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('revealed'); });
-        }, { threshold: 0.12 });
+        const io = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('revealed'); }); }, { threshold: 0.12 });
         document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+        // Scrollspy (desktop + mobile nav)
+        const links = document.querySelectorAll('[data-spy]');
+        const sections = ['about', 'skills', 'projects', 'contact'].map(id => document.getElementById(id));
+        const setActive = (id) => {
+            links.forEach(a => {
+                const match = a.getAttribute('data-spy') === id;
+                a.classList.toggle('text-brand-600', match);
+                a.classList.toggle('font-semibold', match);
+                if (match) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+            });
+        };
+        const spy = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) { setActive(e.target.id); } });
+        }, { rootMargin: '-45% 0px -50% 0px', threshold: 0.01 });
+        sections.forEach(sec => spy.observe(sec));
     </script>
+
+    <!-- ======= ASSETS TEMPLATES (Simpan sebagai file) =======
+  1) /icons/favicon.svg
+  --------------------------------------------------------- -->
+    <!--
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+    <defs>
+      <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+        <stop offset="0%" stop-color="#60a5fa"/>
+        <stop offset="100%" stop-color="#1d4ed8"/>
+      </linearGradient>
+    </defs>
+    <rect rx="14" width="64" height="64" fill="url(#g)"/>
+    <text x="50%" y="58%" text-anchor="middle" font-family="system-ui,Segoe UI,Roboto,Arial" font-size="36" font-weight="800" fill="#fff">N</text>
+  </svg>
+  -->
+
+    <!-- 2) /icons/safari-pinned-tab.svg (monochrome) -->
+    <!--
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><path fill="#000" d="M8 16a8 8 0 018-8h22a8 8 0 018 8v32a8 8 0 01-8 8H16a8 8 0 01-8-8V16zm16 32h16V16H24v32zm8-22a6 6 0 110 12 6 6 0 010-12z"/></svg>
+  -->
+
+    <!-- 3) /img/og-cover.svg  (export ke PNG 1200x630 sebagai og-cover.png) -->
+    <!--
+  <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+    <defs>
+      <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+        <stop offset="0%" stop-color="#60a5fa"/>
+        <stop offset="100%" stop-color="#1d4ed8"/>
+      </linearGradient>
+    </defs>
+    <rect width="1200" height="630" fill="url(#bg)"/>
+    <text x="60" y="360" font-family="system-ui,Segoe UI,Roboto,Arial" font-size="108" font-weight="800" fill="#fff">Nova Nurachman</text>
+    <text x="60" y="440" font-family="system-ui,Segoe UI,Roboto,Arial" font-size="48" fill="#eaf2ff">Web Developer • IT Support</text>
+    <text x="60" y="510" font-family="system-ui,Segoe UI,Roboto,Arial" font-size="30" fill="#eaf2ff">nvnrchmn.github.io/nova-resume</text>
+  </svg>
+  -->
+
+    <!-- 4) Konversi favicon tambahan:
+      - favicon-32.png   (32x32)
+      - favicon-192.png  (192x192)
+      - apple-touch-icon.png (180x180)
+     Semua bisa diexport dari favicon.svg di editor gambar. -->
+
 </body>
 
 </html>
