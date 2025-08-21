@@ -34,7 +34,7 @@ export function Hero() {
             <div className="h-full w-full rounded-2xl bg-card grid place-items-center text-center p-6 sm:p-8">
               <div className="flex flex-col items-center">
                 <Image
-                  src="/img/profile.jpeg"
+                  src="img/profile.jpeg"
                   alt="Foto Nova Nurachman"
                   width={720}
                   height={720}
