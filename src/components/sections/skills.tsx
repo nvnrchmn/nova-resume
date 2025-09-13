@@ -30,10 +30,12 @@ export function Skills() {
   return (
     <section id="skills" className="scroll-mt-24 py-14 sm:py-16 md:py-20">
       <div className="max-w-6xl mx-auto px-4">
-        <h2 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8">Keahlian Utama</h2>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+        <h2 className="text-xl sm:text-2xl font-bold mb-2">Keahlian Utama</h2>
+        <div className="h-1.5 w-24 rounded-full bg-gradient-to-r from-violet-600 to-fuchsia-600 mb-6 sm:mb-8" />
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 items-stretch">
           {items.map((it) => (
-            <div key={it.title} className="p-4 sm:p-5 rounded-xl border bg-card">
+            <div key={it.title} className="p-4 sm:p-5 rounded-xl border bg-card h-full transition hover:shadow-lg hover:-translate-y-0.5">
+              <div className="h-1 w-12 rounded-full bg-gradient-to-r from-violet-500/70 to-fuchsia-500/70 mb-3" />
               <h3 className="font-semibold">{it.title}</h3>
               <p className="mt-2 text-sm text-muted-foreground">{it.desc}</p>
             </div>

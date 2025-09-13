@@ -6,7 +6,7 @@ export function Footer() {
         <div>
           <p className="font-semibold text-sm sm:text-base">© {year} Nova Nurachman</p>
           <p className="text-xs sm:text-sm text-muted-foreground">
-            Bekasi, Indonesia · <a className="underline-offset-4 hover:underline" href="mailto:nv.nrchmn@gmail.com">nv.nrchmn@gmail.com</a>
+            Bekasi, Indonesia • <a className="underline-offset-4 hover:underline" href="mailto:nv.nrchmn@gmail.com">nv.nrchmn@gmail.com</a>
           </p>
         </div>
         <div className="flex md:justify-end gap-2 sm:gap-3 text-xs sm:text-sm">
@@ -18,5 +18,4 @@ export function Footer() {
     </footer>
   );
 }
-
 

@@ -15,14 +15,35 @@ const PROJECTS: Project[] = [
   {
     title: "Creativo Studio",
     tag: "Next JS",
-    description: "Landing Page company of Creativo Studio",
+    description: "Landing page perusahaan sederhana dengan komponen modern.",
     code: "https://github.com/nvnrchmn/creativo-studio",
     demo: "https://creativo-studio.netlify.app/",
   },
-  // Add other projects here mapped from original if needed
+  {
+    title: "Nova Resume",
+    tag: "Next JS",
+    description: "Portfolio & resume dengan Tailwind & Shadcn UI.",
+    code: "https://github.com/nvnrchmn/nova-resume",
+    demo: "https://nvnrchmn.github.io/nova-resume/",
+  },
+  {
+    title: "Aset Tracker",
+    tag: "Laravel",
+    description: "Konsep aplikasi pengelolaan aset & inventory (CRUD, laporan).",
+  },
+  {
+    title: "Helpdesk Mini",
+    tag: "Laravel",
+    description: "Prototipe tiket helpdesk internal untuk IT support.",
+  },
+  {
+    title: "Admin Dashboard",
+    tag: "Tailwind CSS",
+    description: "UI dashboard responsif untuk monitoring stok & laporan.",
+  },
 ];
 
-const FILTERS = ["*", "Next JS", "Tailwind CSS", "Shadcn UI"] as const;
+const FILTERS = ["*", "Next JS", "Laravel", "Tailwind CSS", "Shadcn UI"] as const;
 
 export function Projects() {
   const [filter, setFilter] = useState<(typeof FILTERS)[number]>("*");
@@ -36,7 +57,10 @@ export function Projects() {
     <section id="projects" className="scroll-mt-24 py-14 sm:py-16 md:py-20 border-t">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex items-end justify-between mb-4 sm:mb-6">
-          <h2 className="text-xl sm:text-2xl font-bold">Proyek Pilihan</h2>
+          <div>
+            <h2 className="text-xl sm:text-2xl font-bold">Proyek Pilihan</h2>
+            <div className="mt-2 h-1.5 w-20 rounded-full bg-gradient-to-r from-violet-600 to-fuchsia-600" />
+          </div>
           <Link
             href="https://github.com/nvnrchmn?tab=repositories"
             target="_blank"
@@ -47,15 +71,16 @@ export function Projects() {
           </Link>
         </div>
 
-        <div className="grid gap-4 sm:gap-6 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid gap-4 sm:gap-6 md:grid-cols-2 xl:grid-cols-3 items-stretch">
           {filtered.map((p) => (
-            <article key={p.title} className="group p-5 rounded-xl border bg-card hover:shadow-lg transition">
+            <article key={p.title} className="group p-5 rounded-xl border bg-card hover:shadow-lg transition h-full flex flex-col">
               <header className="flex items-center justify-between gap-3">
                 <h3 className="font-semibold">{p.title}</h3>
-                <span className="text-xs px-2 py-1 rounded-full bg-sky-600 text-white">{p.tag}</span>
+                <span className="text-xs px-2 py-1 rounded-full bg-violet-600 text-white">{p.tag}</span>
               </header>
+              <div className="h-1 w-12 rounded-full bg-gradient-to-r from-violet-500/70 to-fuchsia-500/70 mt-3" />
               <p className="mt-2 text-sm text-muted-foreground">{p.description}</p>
-              <footer className="mt-4 flex gap-3">
+              <footer className="mt-auto pt-4 flex gap-3">
                 {p.code && (
                   <Link href={p.code} target="_blank" rel="noopener">
                     <Button variant="outline" size="sm">Kode</Button>
